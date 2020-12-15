@@ -37,12 +37,27 @@ router.get('/', function(req, res) {
 
 });
 
-router.get('/get/html', function(req, res) {
+router.get('/get/car', function(req, res) {
 
     res.writeHead(200, {'Content-Type': 'text/html'}); //We are responding to the client that the content served back is HTML and the it exists (code 200)
 
     var xml = fs.readFileSync('Dealership.xml', 'utf8'); //We are reading in the XML file
-    var xsl = fs.readFileSync('Dealership.xsl', 'utf8'); //We are reading in the XSL file
+    var xsl = fs.readFileSync('car.xsl', 'utf8'); //We are reading in the XSL file
+
+    var doc = xmlParse(xml); //Parsing our XML file
+    var stylesheet = xmlParse(xsl); //Parsing our XSL file
+
+    var result = xsltProcess(doc, stylesheet); //This does our XSL Transformation
+
+    res.end(result.toString()); //Send the result back to the user, but convert to type string first
+
+});
+router.get('/get/motorcycle', function(req, res) {
+
+    res.writeHead(200, {'Content-Type': 'text/html'}); //We are responding to the client that the content served back is HTML and the it exists (code 200)
+
+    var xml = fs.readFileSync('Dealership.xml', 'utf8'); //We are reading in the XML file
+    var xsl = fs.readFileSync('motorcycle.xsl', 'utf8'); //We are reading in the XSL file
 
     var doc = xmlParse(xml); //Parsing our XML file
     var stylesheet = xmlParse(xsl); //Parsing our XSL file
