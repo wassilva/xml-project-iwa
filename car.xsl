@@ -32,7 +32,7 @@
                                             <input name="model" type="radio" />
                                         </td>
                                     </xsl:if>
-                                    <xsl:if test="$item = 'doors'">
+                                    <xsl:if test="$item = 'door'">
                                         <td align="center">
                                             <input name="door" type="radio" />
                                         </td>
