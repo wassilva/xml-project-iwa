@@ -10,7 +10,8 @@ function draw_table(){
             }
         });
     };
-    $.getJSONuncached("/get/html")
+    var url = document.querySelector("#urlGet").getAttribute("name")
+    $.getJSONuncached(url)
 }
 $(document).ready(function(){
     draw_table();
