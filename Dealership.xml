@@ -3,25 +3,25 @@
   <section name="Car" item="car" radio="true">
     <entree>
       <item>Hyundai HB20</item>
-      <price>10,000.00</price>
+      <price>10000.00</price>
     </entree>
     <entree>
       <item>Honda Civic 2020</item>
-      <price>10,000.00</price>
+      <price>10000.00</price>
     </entree>
     <entree>
       <item>Mustang</item>
-      <price>10,000.00</price>
+      <price>10000.00</price>
     </entree>
   </section>
   <section name="Model" item="model" radio="true">
     <entree>
       <item>Eletronic Luxe Extra</item>
-      <price>4,999.99</price>
+      <price>4999.99</price>
     </entree>
     <entree>
       <item>Eletronic Extra</item>
-      <price>2,999.99</price>
+      <price>2999.99</price>
     </entree>
   </section>
   <section name="Accessories">
