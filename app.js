@@ -15,21 +15,21 @@ router.use(express.json()); //We include support for JSON that is coming from th
 
 // Function to read in XML file and convert it to JSON
 function xmlFileToJs(filename, cb) {
-  var filepath = path.normalize(path.join(__dirname, filename));
-  fs.readFile(filepath, 'utf8', function(err, xmlStr) {
-    if (err) throw (err);
-    xml2js.parseString(xmlStr, {}, cb);
-  });
-}
-
-//Function to convert JSON to XML and save it
-function jsToXmlFile(filename, obj, cb) {
-  var filepath = path.normalize(path.join(__dirname, filename));
-  var builder = new xml2js.Builder();
-  var xml = builder.buildObject(obj);
-  fs.unlinkSync(filepath);
-  fs.writeFile(filepath, xml, cb);
-}
+    var filepath = path.normalize(path.join(__dirname, filename));
+    fs.readFile(filepath, 'utf8', function(err, xmlStr) {
+      if (err) throw (err);
+      xml2js.parseString(xmlStr, {}, cb);
+    });
+  }
+  
+  //Function to convert JSON to XML and save it
+  function jsToXmlFile(filename, obj, cb) {
+    var filepath = path.normalize(path.join(__dirname, filename));
+    var builder = new xml2js.Builder();
+    var xml = builder.buildObject(obj);
+    fs.unlinkSync(filepath);
+    fs.writeFile(filepath, xml, cb);
+  }
 
 router.get('/', function(req, res) {
 
@@ -68,7 +68,7 @@ router.get('/get/motorcycle', function(req, res) {
 
 });
 
-router.post('/post/json', function (req, res) {
+router.post('/post/json/add_car', function (req, res) {
 
     function appendJSON(obj) {
 
@@ -77,7 +77,7 @@ router.post('/post/json', function (req, res) {
         xmlFileToJs('Dealership.xml', function (err, result) {
             if (err) throw (err);
             
-            result.cafemenu.section[obj.sec_n].entree.push({'item': obj.item, 'price': obj.price});
+            result.carmenu.section[obj.sec_add].entree.push({'item': obj.item_add, 'price': obj.price_add});
 
             console.log(JSON.stringify(result, null, "  "));
 
@@ -91,6 +91,56 @@ router.post('/post/json', function (req, res) {
 
     res.redirect('back');
 
+});
+
+router.post('/post/json/rm_car', function (req, res) {
+    var erro = 0;
+    function appendJSON(obj) {
+
+        console.log(obj)
+
+        xmlFileToJs('Dealership.xml', function (err, result) {
+            if (err) throw (err);
+            var item = obj.item_rm
+            var confirmation = false
+            var i = 0;
+            while(confirmation == false){
+                try{
+                    if(item != ""){
+                        if(result.carmenu.section[obj.sec_rm].entree[i].item){
+                            if(item == result.carmenu.section[obj.sec_rm].entree[i].item){ 
+                                result.carmenu.section[obj.sec_rm].entree.splice(i,1)
+                                confirmation = true
+                            }
+                        }
+                    }
+                    else{
+                        confirmation = true
+                    }
+                }
+                catch(e){
+                    confirmation = true
+                    erro = 1;
+                }
+                i++;
+                
+            }
+            console.log(JSON.stringify(result, null, "  "));
+
+            jsToXmlFile('Dealership.xml', result, function(err){
+                if (err) console.log(err);
+            });
+        });
+    };
+
+    appendJSON(req.body);
+    if(erro == 1){
+        res.redirect('back');
+        res.send("Errou na entrada!")
+    }
+    else{
+        res.redirect('back');
+    }
 });
 
 server.listen(process.env.PORT || 3000, process.env.IP || "0.0.0.0", function () {

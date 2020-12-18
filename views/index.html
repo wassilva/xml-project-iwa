@@ -28,19 +28,49 @@
 				<h1 class="mt-5">Buy Car</h1>
 				<p class="lead">Select your entrees from the menu below</p>
 			</div>
-			<div id="results" class="col-lg-12 order-2 table-center mb-2 order-2"></div>
-			<div class="text-center col-12 order-3 mb-5">
-				<a href="#" type="button" class="btn btn-primary">Add To Cart</a>
-			</div>
+			<div class="col-lg-4 order-2">
+				<div class="col-lg-12">
+					<form enctype="application/json" action="/post/json/add_car" method="post">
+						<div class="form-group">
+							<select class="form-control" name="sec_add">
+								<option value="0">Car</option>
+								<option value="1">Model</option>
+								<option value="2">Accessory</option>
+								<option value="3">Doors</option>
+							</select>
+							<input class="form-control mt-3" type="text" name="item_add" placeholder="Item">
+							<input class="form-control mt-3" type="text" name="price_add" placeholder="Price">
+							<button type="submit" class="btn btn-success btn-block mt-3">Add</button>
+						</div>
+					</form>
+					<form enctype="application/json" action="/post/json/rm_car" method="post">
+						<div class="form-group mt-5">
+							<select class="form-control" name="sec_rm">
+								<option value="0">Car</option>
+								<option value="1">Model</option>
+								<option value="2">Accessory</option>
+								<option value="3">Doors</option>
+							</select>
+							<input class="form-control mt-3" type="text" name="item_rm" placeholder="Item">
+							<button type="submit" class="btn btn-danger btn-block mt-3">Remove</button>
+						</div>
+					</form>
+				</div>
+				</div>
+				<div id="results" class="col-lg-8 order-3 table-center mb-2 order-2"></div>
+				<div class="text-center col-12 order-4 mb-5">
+					<a href="#" type="button" class="btn btn-primary">Add To Cart</a>
+				</div>
 		</div>
+		
 	</div>
 	<!-- Footer -->
 	<div id="footer"></div>
 	
 	<!-- Bootstrap core JavaScript -->
 	<script src="js/jquery.min.js"></script>
+	<script src="https://unpkg.com/@popperjs/core@2"></script>
 	<script src="bootstrap-4.4.1/dist/js/bootstrap.js"></script>
-	<script src="js/motorcycle.js"></script>
 	<script src="js/table.js"></script>
 	<script src="js/navigation.js"></script>
 	<script src="js/footer.js"></script>

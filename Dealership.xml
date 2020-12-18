@@ -1,123 +1,55 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<dealership>
-    <carmenu>
-        <section name="Car" item="car" radio="true">
-            <entree>
-                <item>Hyundai HB20</item>
-                <price>10,000.00</price>
-            </entree>
-            <entree>
-                <item>Honda Civic 2020</item>
-                <price>10,000.00</price>
-            </entree>
-            <entree>
-                <item>Mustang</item>
-                <price>10,000.00</price>
-            </entree>
-        </section>
-        <section name="Model" item="model" radio="true">
-            <entree>
-                <item>Eletronic Luxe Extra</item>
-                <price>4,999.99</price>
-            </entree>
-            <entree>
-                <item>Eletronic Extra</item>
-                <price>2,999.99</price>
-            </entree>
-        </section>
-        <section name="Accessories">
-            <entree>
-                <item>Air Bag</item>
-                <price>49.99</price>
-            </entree>
-            <entree>
-                <item>Air Conditioner</item>
-                <price>49.99</price>
-            </entree>
-            <entree>
-                <item>Eletric Lock</item>
-                <price>49.99</price>
-            </entree>
-            <entree>
-                <item>Radio / CD</item>
-                <price>49.99</price>
-            </entree>
-        </section>
-        <section name="Doors" item="door" radio="true">
-            <entree>
-                <item>2 Doors</item>
-                <price>249.99</price>
-            </entree>
-            <entree>
-                <item>4 Doors</item>
-                <price>499.99</price>
-            </entree>
-        </section>
-    </carmenu>
-    <motomenu>
-        <section name="Motorcycles" item="motorcycle" radio="true">
-            <entree>
-                <item>Yamaha MT-03</item>
-                <price>10,000.00</price>
-            </entree>
-            <entree>
-                <item>Harley Davidson</item>
-                <price>10,000.00</price>
-            </entree>
-            <entree>
-                <item>Honda CB 1000R</item>
-                <price>10,000.00</price>
-            </entree>
-        </section>
-        <section name="Helmets">
-            <entree>
-                <item>AGV K1</item>
-                <price>100.00</price>
-            </entree>
-            <entree>
-                <item>Bell Qualifier</item>
-                <price>100.00</price>
-            </entree>
-            <entree>
-                <item>Icon Airflite</item>
-                <price>100.00</price>
-            </entree>
-            <entree>
-                <item>BILT Techno 2.0</item>
-                <price>100.00</price>
-            </entree>
-        </section>
-        <section name="Seats" item="seat" radio="true">
-            <entree>
-                <item>Vintage Cafe Racer</item>
-                <price>40.00</price>
-            </entree>
-            <entree>
-                <item>Mustang Fastback</item>
-                <price>40.00</price>
-            </entree>
-            <entree>
-                <item>Amazicha Black Leather</item>
-                <price>40.00</price>
-            </entree>
-        </section>
-        <section name="Grips" item="grips" radio="true">
-            <entree>
-                <item>Pro Grip 719</item>
-                <price>80.00</price>
-            </entree>
-            <entree>
-                <item>Rizoma Sport</item>
-                <price>80.00</price>
-            </entree>
-            <entree>
-                <item>Avon Metric Cruiser</item>
-                <price>80.00</price>
-            </entree>
-            <entree>
-                <item>Domino MotoGP</item>
-                <price>80.00</price>
-            </entree>
-        </section>
-    </motomenu>
-</dealership>
+<carmenu>
+  <section name="Car" item="car" radio="true">
+    <entree>
+      <item>Hyundai HB20</item>
+      <price>10,000.00</price>
+    </entree>
+    <entree>
+      <item>Honda Civic 2020</item>
+      <price>10,000.00</price>
+    </entree>
+    <entree>
+      <item>Mustang</item>
+      <price>10,000.00</price>
+    </entree>
+  </section>
+  <section name="Model" item="model" radio="true">
+    <entree>
+      <item>Eletronic Luxe Extra</item>
+      <price>4,999.99</price>
+    </entree>
+    <entree>
+      <item>Eletronic Extra</item>
+      <price>2,999.99</price>
+    </entree>
+  </section>
+  <section name="Accessories">
+    <entree>
+      <item>Air Bag</item>
+      <price>49.99</price>
+    </entree>
+    <entree>
+      <item>Air Conditioner</item>
+      <price>49.99</price>
+    </entree>
+    <entree>
+      <item>Eletric Lock</item>
+      <price>49.99</price>
+    </entree>
+    <entree>
+      <item>Radio / CD</item>
+      <price>49.99</price>
+    </entree>
+  </section>
+  <section name="Doors" item="door" radio="true">
+    <entree>
+      <item>2 Doors</item>
+      <price>249.99</price>
+    </entree>
+    <entree>
+      <item>4 Doors</item>
+      <price>499.99</price>
+    </entree>
+  </section>
+</carmenu>

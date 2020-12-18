@@ -10,7 +10,7 @@
                 </tr>
             </thead>
             <tbody>
-                <xsl:for-each select="dealership/carmenu/section">
+                <xsl:for-each select="carmenu/section">
                     <xsl:variable name="r_option" select="boolean(@radio)"/>
                     <xsl:variable name="item" select="@item"/>
                     <thead class="thead-light">
