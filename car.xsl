@@ -12,7 +12,7 @@
             <tbody>
                 <xsl:for-each select="carmenu/section">
                     <xsl:variable name="r_option" select="boolean(@radio)"/>
-                    <xsl:variable name="item" select="@item"/>
+                    <xsl:variable name="item" select="@item"/>            
                     <thead class="thead-light">
                         <tr class="">
                             <th colspan="3">
@@ -21,41 +21,43 @@
                         </tr>
                     </thead>
                     <xsl:for-each select="entree">
-                        <tr>
-                            <xsl:attribute name="premium">
-                                <xsl:value-of select="boolean(@premium)"/>
-                            </xsl:attribute>
-                            <xsl:choose>
-                                <xsl:when test="$r_option = 'true'">
-                                    <xsl:if test="$item = 'model'">
+                        <xsl:variable name="content" select="item"/>
+                        <xsl:if test="$content!=''">
+                            <tr>
+                                <xsl:choose>
+                                    <xsl:when test="$r_option = 'true'">
                                         <td align="center">
-                                            <input name="model" type="radio" />
+                                            <input type="radio">
+                                                <xsl:attribute name="value">
+                                                    <xsl:value-of select="item"/>
+                                                </xsl:attribute>
+                                                <xsl:attribute name="name">
+                                                    <xsl:value-of select="$item"/>
+                                                </xsl:attribute>
+                                            </input>
                                         </td>
-                                    </xsl:if>
-                                    <xsl:if test="$item = 'door'">
+                                    </xsl:when>
+                                    <xsl:otherwise>
                                         <td align="center">
-                                            <input name="door" type="radio" />
+                                            <input type="checkbox">
+                                                <xsl:attribute name="value">
+                                                    <xsl:value-of select="item"/>
+                                                </xsl:attribute>
+                                                <xsl:attribute name="name">
+                                                    <xsl:value-of select="$item"/>
+                                                </xsl:attribute>
+                                            </input>
                                         </td>
-                                    </xsl:if>
-                                    <xsl:if test="$item = 'car'">
-                                        <td align="center">
-                                            <input name="car" type="radio" />
-                                        </td>
-                                    </xsl:if>
-                                </xsl:when>
-                                <xsl:otherwise>
-                                    <td align="center">
-                                        <input name="item0" type="checkbox" />
-                                    </td>
-                                </xsl:otherwise>
-                            </xsl:choose> 
-                            <td>
-                                <xsl:value-of select="item" />
-                            </td>
-                            <td align="right">
-                                <xsl:value-of select="price" />
-                            </td>
-                        </tr>
+                                    </xsl:otherwise>
+                                </xsl:choose> 
+                                <td>
+                                    <xsl:value-of select="item" />
+                                </td>
+                                <td align="right">
+                                    <xsl:value-of select="price" />
+                                </td>
+                            </tr>
+                        </xsl:if>
                     </xsl:for-each>
                 </xsl:for-each>
             </tbody>
