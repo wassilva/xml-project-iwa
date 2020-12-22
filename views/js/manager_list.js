@@ -13,10 +13,10 @@ function check_rm(){
     var item_rm = document.querySelector('#item_rm').value
 
     if(item_rm == ""){
-        alert("There was an error adding the item!")
+        alert("There was an error removing the item!")
     }
     else{
-        alert("Item added successfully!")
+        alert("Item removed successfully!")
     }
 }
 $(document).ready(function(){
