@@ -8,7 +8,7 @@ $(document).ready(function (){
     html +=    '<div class="collapse navbar-collapse" id="navbarResponsive">'
     html +=        '<ul class="navbar-nav mr-auto">'
     html +=            '<li class="nav-item" id="home-nav">'
-    html +=                '<a class="nav-link" href="#">Home'
+    html +=                '<a class="nav-link" href="/">Home'
     html +=                '</a>'
     html +=            '</li>'
     html +=            '<li class="nav-item" id="about-nav">'

@@ -16,8 +16,9 @@ function check_rm(){
         alert("There was an error removing the item!")
     }
     else{
-        alert("Item removed successfully!")
+        alert("Item adding successfully!")
     }
+
 }
 $(document).ready(function(){
     $('#form-add').on("submit", function(){
