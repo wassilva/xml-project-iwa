@@ -3,15 +3,15 @@
   <section name="Motorcycles" item="motorcycle" radio="true">
     <entree>
       <item>Yamaha MT-03</item>
-      <price>10,000.00</price>
+      <price>10000.00</price>
     </entree>
     <entree>
       <item>Harley Davidson</item>
-      <price>10,000.00</price>
+      <price>10000.00</price>
     </entree>
     <entree>
       <item>Honda CB 1000R</item>
-      <price>10,000.00</price>
+      <price>10000.00</price>
     </entree>
   </section>
   <section name="Helmets">
