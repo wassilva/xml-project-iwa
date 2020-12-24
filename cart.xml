@@ -2,5 +2,6 @@
 <cart>
   <section>
     <entree/>
+    <billTotal>0</billTotal>
   </section>
 </cart>
