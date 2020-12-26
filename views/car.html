@@ -17,7 +17,11 @@
 </head>
 
 <body>
-	<div id="urlGet" name="/get/car"></div>
+    <div id="urlGet" name="/get/car">
+        <div id="add" name="/post/json/add_car"></div>
+        <div id="rm" name="/post/json/rm_car"></div>
+        <div id="cart" name="/post/json/cart/car"></div>
+    </div>
 	<!-- Navigation -->
 	<div id="header-navbar"></div>
 
@@ -30,38 +34,38 @@
 			</div>
 			<div class="col-lg-4 order-2">
 				<div class="col-lg-12">
-					<form id="form-add" enctype="application/json" action="/post/json/add_car" method="post">
+					<form id="form-add">
 						<div class="form-group">
-							<select class="form-control" name="sec_add">
+							<select class="form-control" id="sec_add">
 								<option value="0">Car</option>
 								<option value="1">Model</option>
 								<option value="2">Accessory</option>
 								<option value="3">Doors</option>
 							</select>
-							<input class="form-control mt-3" type="text" name="item_add" id="item_add" placeholder="Item">
-							<input class="form-control mt-3" type="text" name="price_add" id="price_add" placeholder="Price">
+							<input class="form-control mt-3" type="text"  id="item_add" placeholder="Item">
+							<input class="form-control mt-3" type="text"  id="price_add" placeholder="Price">
 							<button form="form-add" type="submit" class="btn btn-success btn-block mt-3">Add</button>
 						</div>
 					</form>
-					<form id="form-rm" enctype="application/json" action="/post/json/rm_car" method="post">
+					<form id="form-rm">
 						<div class="form-group mt-5">
-							<select class="form-control" name="sec_rm">
+							<select class="form-control" id="sec_rm">
 								<option value="0">Car</option>
 								<option value="1">Model</option>
 								<option value="2">Accessory</option>
 								<option value="3">Doors</option>
 							</select>
-							<input class="form-control mt-3" type="text" id="item_rm" name="item_rm" placeholder="Item">
+							<input class="form-control mt-3" type="text" id="item_rm" placeholder="Item">
 							<button form="form-rm" type="submit" class="btn btn-danger btn-block mt-3">Remove</button>
 						</div>
 					</form>
 				</div>
 				</div>
 				<div class="form-group col-lg-8 order-3 table-center mb-2 order-2 ">
-					<form id="form-cart" enctype="application/json" action="/post/json/cart" method="post">
+					<form id="form-cart">
 						<div id="results"></div>
 						<div class="text-center col-12 order-4 mb-5">
-							<button form="form-cart" type="submit" class="btn btn-primary"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-cart-check" viewBox="0 0 16 16">
+							<button type="button" id="btn-submit-cart" class="btn btn-primary"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-cart-check" viewBox="0 0 16 16">
 								<path d="M11.354 6.354a.5.5 0 0 0-.708-.708L8 8.293 6.854 7.146a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0l3-3z"/>
 								<path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5zm3.915 10L3.102 4h10.796l-1.313 7h-8.17zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
 							  </svg></button>
@@ -80,13 +84,8 @@
 	<script src="js/table.js"></script>
 	<script src="js/navigation.js"></script>
 	<script src="js/footer.js"></script>
-	<script src="js/manager_list.js"></script>
-	<script type="text/javascript">
-		$(document).ready(function(){
-			// const item_about = document.querySelector('#home-nav')
-			// item_about.classList.toggle('active')
-		})
-	</script>
+    <script src="js/manager_list.js"></script>
+    <script src="js/add_to_cart.js"></script>
 </body>
 
 </html>
