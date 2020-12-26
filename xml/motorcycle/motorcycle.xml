@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<motomenu>
+  <section name="Motorcycles" item="motorcycle" radio="true">
+    <entree/>
+    <entree>
+      <item>Yamaha MT-03</item>
+      <price>10000.00</price>
+    </entree>
+    <entree>
+      <item>Harley Davidson</item>
+      <price>10000.00</price>
+    </entree>
+    <entree>
+      <item>Honda CB 1000R</item>
+      <price>10000.00</price>
+    </entree>
+  </section>
+  <section name="Helmets" item="helmets">
+    <entree/>
+    <entree>
+      <item>AGV K1</item>
+      <price>100.00</price>
+    </entree>
+    <entree>
+      <item>Bell Qualifier</item>
+      <price>100.00</price>
+    </entree>
+    <entree>
+      <item>Icon Airflite</item>
+      <price>100.00</price>
+    </entree>
+    <entree>
+      <item>BILT Techno 2.0</item>
+      <price>100.00</price>
+    </entree>
+  </section>
+  <section name="Seats" item="seat" radio="true">
+    <entree/>
+    <entree>
+      <item>Vintage Cafe Racer</item>
+      <price>40.00</price>
+    </entree>
+    <entree>
+      <item>Mustang Fastback</item>
+      <price>40.00</price>
+    </entree>
+    <entree>
+      <item>Amazicha Black Leather</item>
+      <price>40.00</price>
+    </entree>
+  </section>
+  <section name="Grips" item="grips" radio="true">
+    <entree/>
+    <entree>
+      <item>Pro Grip 719</item>
+      <price>80.00</price>
+    </entree>
+    <entree>
+      <item>Rizoma Sport</item>
+      <price>80.00</price>
+    </entree>
+    <entree>
+      <item>Avon Metric Cruiser</item>
+      <price>80.00</price>
+    </entree>
+    <entree>
+      <item>Domino MotoGP</item>
+      <price>80.00</price>
+    </entree>
+  </section>
+</motomenu>
