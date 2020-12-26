@@ -1,0 +1,54 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "type": "object",
+  "title": "The root schema",
+  "description": "The root schema comprises the entire JSON document.",
+  "default": {},
+  "examples": [
+    {
+      "sec_add": "0",
+      "item_add": "Hyundai HB20",
+      "price_add": "10000.00"
+    }
+  ],
+  "required": [
+    "sec_add",
+    "item_add",
+    "price_add"
+  ],
+  "properties": {
+    "sec_add": {
+      "$id": "#/properties/sec_add",
+      "type": "string",
+      "title": "The sec_add schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": "",
+      "examples": [
+        "0"
+      ]
+    },
+    "item_add": {
+      "$id": "#/properties/item_add",
+      "default": "",
+      "description": "An explanation about the purpose of this instance.",
+      "examples": [
+        "Hyundai HB20"
+      ],
+      "title": "The item_add schema",
+      "minLength": 4,
+      "type": "string"
+    },
+    "price_add": {
+      "$id": "#/properties/price_add",
+      "default": "",
+      "description": "An explanation about the purpose of this instance.",
+      "examples": [
+        "10000.00"
+      ],
+      "minimum": 1.0,
+      "title": "The price_add schema",
+      "type": "number"
+    }
+  },
+  "additionalProperties": true
+}

@@ -1,0 +1,81 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "default": {},
+  "description": "The root schema comprises the entire JSON document.",
+  "examples": [
+    {
+      "motorcycle": "Yamaha MT-03",
+      "helmets": [
+        "AGV K1"
+      ],
+      "seat": "Vintage Cafe Racer",
+      "grips": "Pro Grip 719"
+    }
+  ],
+  "required": [
+    "motorcycle",
+    "seat",
+    "grips"
+  ],
+  "title": "The root schema",
+  "type": "object",
+  "properties": {
+    "motorcycle": {
+      "$id": "#/properties/motorcycle",
+      "type": "string",
+      "title": "The motorcycle schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": "",
+      "examples": [
+        "Yamaha MT-03"
+      ]
+    },
+    "helmets": {
+      "$id": "#/properties/helmets",
+      "type": "array",
+      "title": "The helmets schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": [],
+      "examples": [
+        [
+          "AGV K1"
+        ]
+      ],
+      "items": {
+        "$id": "#/properties/helmets/items",
+        "anyOf": [
+          {
+            "$id": "#/properties/helmets/items/anyOf/0",
+            "type": "string",
+            "title": "The first anyOf schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": "",
+            "examples": [
+              "AGV K1"
+            ]
+          }
+        ]
+      }
+    },
+    "seat": {
+      "$id": "#/properties/seat",
+      "type": "string",
+      "title": "The seat schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": "",
+      "examples": [
+        "Vintage Cafe Racer"
+      ]
+    },
+    "grips": {
+      "$id": "#/properties/grips",
+      "type": "string",
+      "title": "The grips schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": "",
+      "examples": [
+        "Pro Grip 719"
+      ]
+    }
+  }
+}

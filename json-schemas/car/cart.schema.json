@@ -1,0 +1,86 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "default": {},
+  "description": "The root schema comprises the entire JSON document.",
+  "examples": [
+    {
+      "car": "Honda Civic 2020",
+      "model": "Eletronic Luxe Extra",
+      "accessory": [
+        "Air Bag",
+        "Air Conditioner",
+        "Eletric Lock",
+        "Radio / CD"
+      ],
+      "door": "2 Doors"
+    }
+  ],
+  "required": [
+    "car",
+    "model",
+    "door"
+  ],
+  "title": "The root schema",
+  "type": "object",
+  "properties": {
+    "car": {
+      "$id": "#/properties/car",
+      "type": "string",
+      "title": "The car schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": "",
+      "examples": [
+        "Honda Civic 2020"
+      ]
+    },
+    "model": {
+      "$id": "#/properties/model",
+      "type": "string",
+      "title": "The model schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": "",
+      "examples": [
+        "Eletronic Luxe Extra"
+      ]
+    },
+    "accessory": {
+      "$id": "#/properties/accessory",
+      "type": "array",
+      "title": "The accessory schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": [],
+      "examples": [
+        [
+          "Air Bag",
+          "Air Conditioner"
+        ]
+      ],
+      "items": {
+        "$id": "#/properties/accessory/items",
+        "anyOf": [
+          {
+            "$id": "#/properties/accessory/items/anyOf/0",
+            "type": "string",
+            "title": "The first anyOf schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": "",
+            "examples": [
+              "Air Bag",
+              "Air Conditioner"
+            ]
+          }
+        ]
+      }
+    },
+    "door": {
+      "$id": "#/properties/door",
+      "type": "string",
+      "title": "The door schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": "",
+      "examples": [
+        "2 Doors"
+      ]
+    }
+  }
+}

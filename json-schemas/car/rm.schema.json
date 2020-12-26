@@ -1,0 +1,41 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "type": "object",
+  "title": "The root schema",
+  "description": "The root schema comprises the entire JSON document.",
+  "default": {},
+  "examples": [
+    {
+      "sec_rm": "0",
+      "item_rm": "Hyundai HB20"
+    }
+  ],
+  "required": [
+    "sec_rm",
+    "item_rm"
+  ],
+  "properties": {
+    "sec_rm": {
+      "$id": "#/properties/sec_rm",
+      "type": "string",
+      "title": "The sec_rm schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": "",
+      "examples": [
+        "0"
+      ]
+    },
+    "item_rm": {
+      "$id": "#/properties/item_rm",
+      "default": "",
+      "description": "An explanation about the purpose of this instance.",
+      "examples": [
+        "Hyundai HB20"
+      ],
+      "title": "The item_rm schema",
+      "minLength": 4,
+      "type": "string"
+    }
+  },
+  "additionalProperties": true
+}
