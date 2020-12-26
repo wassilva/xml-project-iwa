@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+  <xs:element name="carmenu">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="section"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="section">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="entree"/>
+      </xs:sequence>
+      <xs:attribute name="item" use="required" type="xs:NCName"/>
+      <xs:attribute name="name" use="required" type="xs:NCName"/>
+      <xs:attribute name="radio" type="xs:boolean"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="entree">
+    <xs:complexType>
+      <xs:sequence minOccurs="0">
+        <xs:element ref="item"/>
+        <xs:element ref="price"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="item" type="xs:string"/>
+  <xs:element name="price" type="xs:decimal"/>
+</xs:schema>
