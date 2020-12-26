@@ -1,6 +1,4 @@
 $(document).ready(function(){
-    var euro = '&euro;'
-    $('#euro').append(euro)
     $('#button_confirm').on("click", function(){
         $.ajax(
         {
