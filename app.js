@@ -21,7 +21,7 @@ function xmlFileToJs(filename, cb) {
     var filepath = path.normalize(path.join(__dirname, filename));
     fs.readFile(filepath, 'utf8', function(err, xmlStr) {
       if (err) throw (err);
-      xml2js.parseString(xmlStr, {}, cb);                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       cx                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
+      xml2js.parseString(xmlStr, {}, cb);
     });
 }
   
@@ -44,110 +44,203 @@ router.get('/cart', function(req,res){
     res.sendFile(__dirname + "/views/cart.html")
 })
 
-
-router.get('/car', function(req,res){
-    res.sendFile(__dirname + "/views/car.html")
-})
-
-router.get('/motorcycle', function(req, res) {
-    res.sendFile(__dirname + "/views/motorcycle.html");
-
-});
-
-router.get('/get/car', function(req, res) {
-    validator.validateXML({file: 'car.xml'}, 'car.xsd', (error, result) => {
-        if (result.valid) {
-            console.log('XML Validation was correct');
-        } else {
-            console.log("xml invalid")
-        }
-        res.end();
-    });
-    xmlFileToJs('car.xml', function(err,result){
-        console.log(JSON.stringify(result,null,"  "))
-            res.writeHead(200, {'Content-Type': 'text/html'}); //We are responding to the client that the content served back is HTML and the it exists (code 200)
-            var xml = fs.readFileSync('car.xml', 'utf8'); //We are reading in the XML file
-            var xsl = fs.readFileSync('car.xsl', 'utf8'); //We are reading in the XSL file
-
-            var doc = xmlParse(xml); //Parsing our XML file
-            var stylesheet = xmlParse(xsl); //Parsing our XSL file
-
-            var result = xsltProcess(doc, stylesheet); //This does our XSL Transformation
-
-            res.end(result.toString()); //Send the result back to the user, but convert to type string first
-        
-    })
-        
-
-
-});
-
-router.get('/get/motorcycle', function(req, res) {
-    var xml = fs.readFileSync('motorcycle.xml', 'utf8'); //We are reading in the XML file
-
-            res.writeHead(200, {'Content-Type': 'text/html'}); //We are responding to the client that the content served back is HTML and the it exists (code 200)
-            
-            var xsl = fs.readFileSync('motorcycle.xsl', 'utf8'); //We are reading in the XSL file
-
-            var doc = xmlParse(xml); //Parsing our XML file
-            var stylesheet = xmlParse(xsl); //Parsing our XSL file
-
-            var result = xsltProcess(doc, stylesheet); //This does our XSL Transformation
-
-            res.end(result.toString()); //Send the result back to the user, but convert to type string first
-
-
-
-});
-
 router.get('/get/cart', function(req, res){
-    var xml = fs.readFileSync('cart.xml', 'utf8'); //We are reading in the XML file
 
+    res.writeHead(200, {'Content-Type': 'text/html'}); //We are responding to the client that the content served back is HTML and the it exists (code 200)
+    var xml = fs.readFileSync('xml/cart/cart.xml', 'utf8'); //We are reading in the XML file
+    var xsl = fs.readFileSync('xml/cart/cart.xsl', 'utf8'); //We are reading in the XSL file
 
-            res.writeHead(200, {'Content-Type': 'text/html'}); //We are responding to the client that the content served back is HTML and the it exists (code 200)
-            var xsl = fs.readFileSync('cart.xsl', 'utf8'); //We are reading in the XSL file
+    var doc = xmlParse(xml); //Parsing our XML file
+    var stylesheet = xmlParse(xsl); //Parsing our XSL file
 
-            var doc = xmlParse(xml); //Parsing our XML file
-            var stylesheet = xmlParse(xsl); //Parsing our XSL file
+    var result = xsltProcess(doc, stylesheet); //This does our XSL Transformation
 
-            var result = xsltProcess(doc, stylesheet); //This does our XSL Transformation
-
-            res.end(result.toString()); //Send the result back to the user, but convert to type string first
+    res.end(result.toString()); //Send the result back to the user, but convert to type string first
 
 })
 
-router.post('/post/json/add_car', function (req, res) {
-    function appendJSON(obj) {
+router.post('/post/json/cart/car', function(req,res){
+    function getJson(obj){
+        var schema = fs.readFileSync(__dirname + "/json-schemas/car/cart.schema.json", "utf-8")
+        schema = JSON.parse(schema)
+        var validate = ajv.compile(schema)
         console.log(obj)
-
-        xmlFileToJs('car.xml', function (err, result) {
-            if (err) throw (err);
-            result.carmenu.section[obj.sec_add].entree.push({'item': obj.item_add, 'price': obj.price_add});
-            
-            if(obj.item_add == '' || obj.price_add == ''){
-            } 
-            else{
-                jsToXmlFile('car.xml', result, function(err){
-                    if (err) console.log(err);
+        if(validate(obj)){
+            xmlFileToJs('xml/cart/cart.xml', function(err2, result2){
+                if(err2) throw (err2)
+                
+                console.log(JSON.stringify(result2, null, "  "));
+                
+                xmlFileToJs('xml/car/car.xml', function(err1, result1){
+                    if(err1) throw (err1)
+                    var json_cart
+                    for(var k = 0; k < result1.carmenu.section.length ; k++){
+                        var section = result1.carmenu.section[k].entree
+                        
+                        switch(k){
+                            case 0:
+                                for(var j = 0 ; j < section.length ; j++ ){
+                                    if(obj.car){
+                                        if(obj.car == section[j].item){
+                                            json_cart = section[j]
+                                            result2.cart.section[0].entree.push({'item': json_cart.item, 'price': json_cart.price})
+                                        }
+                                    }
+                                }
+                                break;
+                            case 1:
+                                for(var j = 0 ; j < section.length ; j++ ){
+                                    if(obj.model){
+                                        if(obj.model == section[j].item){
+                                            json_cart = section[j]
+                                            result2.cart.section[0].entree.push({'item': json_cart.item, 'price': json_cart.price})
+                                        }
+                                    }
+                                }
+                                break;
+                            case 2:
+                                for(var i = 0 ; i < section.length ; i++ ){
+                                    for(var j = 1 ; j < section.length ; j++ ){
+                                        if(obj.accessory){
+                                            if(obj.accessory[i] == section[j].item){
+                                                json_cart = section[j]
+                                                result2.cart.section[0].entree.push({'item': json_cart.item, 'price': json_cart.price})
+                                            }
+                                            
+                                        }
+                                    }
+                                }
+                                break;
+                            case 3:
+                                for(var j = 0 ; j < section.length ; j++ ){
+                                    if(obj.door){
+                                        if(obj.door == section[j].item){
+                                            json_cart = section[j]
+                                            result2.cart.section[0].entree.push({'item': json_cart.item, 'price': json_cart.price})
+                                        }
+                                    }
+                                }
+                                break;
+                        }
+                    }
+                    
+                    var billTotal = 0
+                    for( var i = 1 ; i < result2.cart.section[0].entree.length ; i++ ){
+                        billTotal += parseFloat(result2.cart.section[0].entree[i].price)
+                    }
+                    billTotal = Math.round(billTotal * 100.0) / 100.0
+                    result2.cart.section[0].billTotal = billTotal
+                    console.log(JSON.stringify(result2, null, "  "))
+                    jsToXmlFile('xml/cart/cart.xml', result2, function(err2){
+                        if(err2) console.log(err2)
+                    })
                 })
-            }
-            
-        });
-    };
+            })
+            res.write("valid input!")
+        }
+        else{
+            res.write("invalid input!")
+        }
+        res.end()
+    }
+    getJson(req.body)
+})
 
-    appendJSON(req.body);
-
-    res.redirect('back');
-
-    
-});
+router.post('/post/json/cart/moto', function(req,res){
+    function getJson(obj){
+        var schema = fs.readFileSync(__dirname + "/json-schemas/motorcycle/cart.schema.json", "utf-8")
+        schema = JSON.parse(schema)
+        var validate = ajv.compile(schema)
+        console.log(obj)
+        if(validate(obj)){
+            xmlFileToJs('xml/cart/cart.xml', function(err2, result2){
+                if(err2) throw (err2)
+                
+                console.log(JSON.stringify(result2, null, "  "));
+                
+                xmlFileToJs('xml/motorcycle/motorcycle.xml', function(err1, result1){
+                    if(err1) throw (err1)
+                    var json_cart
+                    for(var k = 0; k < result1.motomenu.section.length ; k++){
+                        var section = result1.motomenu.section[k].entree
+                        
+                        switch(k){
+                            case 0:
+                                console.log(Array.isArray(obj.motorcycle))
+                                for(var j = 0 ; j < section.length ; j++ ){
+                                    if(obj.motorcycle){
+                                        if(obj.motorcycle == section[j].item){
+                                            json_cart = section[j]
+                                            result2.cart.section[0].entree.push({'item': json_cart.item, 'price': json_cart.price})
+                                        }
+                                    }
+                                }
+                                break;
+                            case 1:
+                                for(var i = 0 ; i < section.length ; i++ ){
+                                    console.log(Array.isArray(obj.helmets))
+                                    for(var j = 1 ; j < section.length ; j++ ){
+                                        if(obj.helmets){
+                                            if(obj.helmets[i] == section[j].item){
+                                                json_cart = section[j]
+                                                result2.cart.section[0].entree.push({'item': json_cart.item, 'price': json_cart.price})
+                                            }
+                                            
+                                        }
+                                    }
+                                }
+                                break;
+                            case 2:
+                                for(var j = 0 ; j < section.length ; j++ ){
+                                    if(obj.seat){
+                                        if(obj.seat == section[j].item){
+                                            json_cart = section[j]
+                                            result2.cart.section[0].entree.push({'item': json_cart.item, 'price': json_cart.price})
+                                        }
+                                    }
+                                }
+                                break;
+                            case 3:
+                                for(var j = 0 ; j < section.length ; j++ ){
+                                    if(obj.grips){
+                                        if(obj.grips == section[j].item){
+                                            json_cart = section[j]
+                                            result2.cart.section[0].entree.push({'item': json_cart.item, 'price': json_cart.price})
+                                        }
+                                    }
+                                }
+                                break;
+                        }
+                    }
+                    
+                    var billTotal = 0
+                    for( var i = 1 ; i < result2.cart.section[0].entree.length ; i++ ){
+                        billTotal += parseFloat(result2.cart.section[0].entree[i].price)
+                    }
+                    billTotal = Math.round(billTotal * 100.0) / 100.0
+                    result2.cart.section[0].billTotal = billTotal
+                    console.log(JSON.stringify(result2, null, "  "))
+                    jsToXmlFile('xml/cart/cart.xml', result2, function(err2){
+                        if(err2) console.log(err2)
+                    })
+                })
+            })
+            res.write("valid input!")
+        }
+        else{
+            res.write("invalid input!")
+        }
+        res.end()
+    }
+    getJson(req.body)
+})
 
 router.post('/post/json/cart_rm', function (req, res) {
     function appendJSON(obj) {
 
         console.log(obj)
 
-        xmlFileToJs('cart.xml', function (err, result) {
+        xmlFileToJs('xml/cart/cart.xml', function (err, result) {
             if (err) throw (err);
             console.log(JSON.stringify(result, null, "  "));
             var item = obj.item
@@ -167,7 +260,7 @@ router.post('/post/json/cart_rm', function (req, res) {
             billTotal = Math.round(billTotal * 100.0) / 100.0
             result.cart.section[0].billTotal = billTotal
             console.log(JSON.stringify(result, null, "  "));
-            jsToXmlFile('cart.xml', result, function(err){
+            jsToXmlFile('xml/cart/cart.xml', result, function(err){
                 if (err) console.log(err);
             });
             
@@ -181,135 +274,8 @@ router.post('/post/json/cart_rm', function (req, res) {
 
 });
 
-router.post('/post/json/rm_car', function (req, res) {
-    var erro = 0;
-    function appendJSON(obj) {
-        
-        xmlFileToJs('car.xml', function (err, result) {
-            if (err) throw (err);
-            var item = obj.item_rm
-            var confirmation = false
-            var i = 0;
-            while(confirmation == false){
-                try{
-                    if (item!=""){
-                        if(item == result.carmenu.section[obj.sec_rm].entree[i].item){ 
-                            result.carmenu.section[obj.sec_rm].entree.splice(i,1)
-                            confirmation = true
-                        }
-                    }
-                    else{
-                        confirmation = true
-                        erro = 1
-                    }
-                }
-                catch(e){
-                    confirmation = true
-                    erro = 1;
-                }
-                i++;
-            }
-            // console.log(JSON.stringify(result, null, "  "));
-            if(item == ""){
-            }
-            else{
-                if(erro != 1){
-                    jsToXmlFile('car.xml', result, function(err){
-                        if (err) console.log(err);
-                    });
-                }
-            }
-        })
-    };
-
-    appendJSON(req.body);
-
-    res.redirect('back');
-
-});
-
-router.post('/post/json/cart', function(req,res){
-    function getJson(obj){
-        console.log(obj)
-        xmlFileToJs('cart.xml', function(err2, result2){
-            if(err2) throw (err2)
-            
-            // console.log(JSON.stringify(result, null, "  "));
-            
-            xmlFileToJs('car.xml', function(err1, result1){
-                if(err1) throw (err1)
-                var json_cart
-                for(var k = 0; k < result1.carmenu.section.length ; k++){
-                    var section = result1.carmenu.section[k].entree
-                    
-                    switch(k){
-                        case 0:
-                            console.log(Array.isArray(obj.car))
-                            for(var j = 0 ; j < section.length ; j++ ){
-                                if(obj.car){
-                                    if(obj.car == section[j].item){
-                                        json_cart = section[j]
-                                        result2.cart.section[0].entree.push({'item': json_cart.item, 'price': json_cart.price})
-                                    }
-                                }
-                            }
-                            break;
-                        case 1:
-                            for(var j = 0 ; j < section.length ; j++ ){
-                                if(obj.model){
-                                    if(obj.model == section[j].item){
-                                        json_cart = section[j]
-                                        result2.cart.section[0].entree.push({'item': json_cart.item, 'price': json_cart.price})
-                                    }
-                                }
-                            }
-                            break;
-                        case 2:
-                            for(var i = 0 ; i < section.length ; i++ ){
-                                console.log(Array.isArray(obj.accessory))
-                                for(var j = 1 ; j < section.length ; j++ ){
-                                    if(obj.accessory){
-                                        if(obj.accessory[i] == section[j].item){
-                                            json_cart = section[j]
-                                            result2.cart.section[0].entree.push({'item': json_cart.item, 'price': json_cart.price})
-                                        }
-                                    }
-                                }
-                            }
-                            break;
-                        case 3:
-                            for(var j = 0 ; j < section.length ; j++ ){
-                                if(obj.door){
-                                    if(obj.door == section[j].item){
-                                        json_cart = section[j]
-                                        result2.cart.section[0].entree.push({'item': json_cart.item, 'price': json_cart.price})
-                                    }
-                                }
-                            }
-                            break;
-                    }
-                }
-                var billTotal = 0
-                for( var i = 1 ; i < result2.cart.section[0].entree.length ; i++ ){
-                    billTotal += parseFloat(result2.cart.section[0].entree[i].price)
-                }
-                billTotal = Math.round(billTotal * 100.0) / 100.0
-                result2.cart.section[0].billTotal = billTotal
-                console.log(JSON.stringify(result2, null, "  "))
-                // if(obj.accessory)
-                //     var accessories = result.carmenu.section[obj.accessory]
-                jsToXmlFile('cart.xml', result2, function(err2){
-                    if(err2) console.log(err2)
-                })
-            })
-        })
-    }
-    getJson(req.body)
-    res.redirect('/cart')
-})
-
 router.post("/post/json/confirm", function(req,res){  
-    xmlFileToJs('cart.xml', function (err, result) {
+    xmlFileToJs('xml/cart/cart.xml', function (err, result) {
         if (err) throw (err);
         var length = result.cart.section[0].entree.length
         length -= 1
@@ -317,11 +283,208 @@ router.post("/post/json/confirm", function(req,res){
         result.cart.section[0].entree.splice(1,length)
         result.cart.section[0].billTotal = 0
         console.log(JSON.stringify(result, null, "  "));
-        jsToXmlFile('cart.xml', result, function(err){
+        jsToXmlFile('xml/cart/cart.xml', result, function(err){
             if (err) console.log(err);
         });     
     })
 })
+
+//Pag Buy Car
+router.get('/car', function(req,res){
+    res.sendFile(__dirname + "/views/car.html")
+})
+
+router.get('/get/car', function(req, res) {
+    validator.validateXML({file: 'xml/car/car.xml'}, 'xsd/car.xsd', (error, result) => {
+        if(result.valid){
+            xmlFileToJs('xml/car/car.xml', function(err,result){
+                // console.log(JSON.stringify(result,null,"  "))
+                res.writeHead(200, {'Content-Type': 'text/html'}); //We are responding to the client that the content served back is HTML and the it exists (code 200)
+                var xml = fs.readFileSync('xml/car/car.xml', 'utf8'); //We are reading in the XML file
+                var xsl = fs.readFileSync('xml/car/car.xsl', 'utf8'); //We are reading in the XSL file
+
+                var doc = xmlParse(xml); //Parsing our XML file
+                var stylesheet = xmlParse(xsl); //Parsing our XSL file
+
+                var result = xsltProcess(doc, stylesheet); //This does our XSL Transformation
+                res.end(result.toString()); //Send the result back to the user, but convert to type string first
+            })
+        }
+        else{
+            throw(error)
+        }
+    
+    }); 
+});
+
+router.post('/post/json/add_car', function (req, res) {
+    function appendJSON(obj) {
+        obj.price_add = parseFloat(obj.price_add)
+        var schema = fs.readFileSync(__dirname + "/json-schemas/car/add.schema.json", "utf-8")
+        schema = JSON.parse(schema)
+        var validate = ajv.compile(schema)
+        if(validate(obj)){
+            xmlFileToJs('xml/car/car.xml', function (err, result) {
+                if (err) throw (err);
+                result.carmenu.section[obj.sec_add].entree.push({'item': obj.item_add, 'price': obj.price_add});
+                jsToXmlFile('xml/car/car.xml', result, function(err){
+                    if (err) throw(err);
+                })
+                
+            });
+            res.write("valid input!")
+        }
+        else{
+            res.write("invalid input!")
+        }
+        res.end();
+    };
+    appendJSON(req.body);
+});
+
+router.post('/post/json/rm_car', function (req, res) {
+    function appendJSON(obj) {
+        xmlFileToJs('xml/car/car.xml', function (err, result) {
+            var error = false
+            var schema = fs.readFileSync(__dirname + "/json-schemas/car/rm.schema.json","utf-8")
+            schema = JSON.parse(schema)
+            var validate = ajv.compile(schema)
+            if(validate(obj)){
+                
+                if (err) throw (err);
+                var item = obj.item_rm
+                var confirmation = false
+                var i = 0;
+                while(confirmation == false){
+                    try{
+                        if(item == result.carmenu.section[obj.sec_rm].entree[i].item){ 
+                            result.carmenu.section[obj.sec_rm].entree.splice(i,1)
+                            confirmation = true
+                        }
+                    }
+                    catch(e){
+                        confirmation = true
+                        error = true
+                    }
+                    i++
+                }
+                // console.log(JSON.stringify(result, null, "  "));
+                jsToXmlFile('xml/car/car.xml', result, function(err){
+                    if (err) throw(err);
+                });
+                
+            }
+            else error = true
+
+            if(error) res.write("invalid input!")
+            else res.write("valid input!")
+
+            res.end()
+        })
+    };
+
+    appendJSON(req.body);
+
+});
+
+
+router.get('/motorcycle', function(req, res) {
+    res.sendFile(__dirname + "/views/motorcycle.html");
+
+});
+
+router.get('/get/motorcycle', function(req, res) {
+    validator.validateXML({file: 'xml/motorcycle/motorcycle.xml'}, 'xsd/motorcycle.xsd', (error, result) => {
+        if(result.valid){
+            xmlFileToJs('xml/motorcycle/motorcycle.xml', function(err,result){
+                // console.log(JSON.stringify(result,null,"  "))
+                res.writeHead(200, {'Content-Type': 'text/html'}); //We are responding to the client that the content served back is HTML and the it exists (code 200)
+                var xml = fs.readFileSync('xml/motorcycle/motorcycle.xml', 'utf8'); //We are reading in the XML file
+                var xsl = fs.readFileSync('xml/motorcycle/motorcycle.xsl', 'utf8'); //We are reading in the XSL file
+
+                var doc = xmlParse(xml); //Parsing our XML file
+                var stylesheet = xmlParse(xsl); //Parsing our XSL file
+
+                var result = xsltProcess(doc, stylesheet); //This does our XSL Transformation
+                res.end(result.toString()); //Send the result back to the user, but convert to type string first
+            })
+        }
+        else{
+            throw(error)
+        }
+    
+    }); 
+
+});
+
+router.post('/post/json/add_moto', function (req, res) {
+    function appendJSON(obj) {
+        obj.price_add = parseFloat(obj.price_add)
+        var schema = fs.readFileSync(__dirname + "/json-schemas/motorcycle/add.schema.json", "utf-8")
+        schema = JSON.parse(schema)
+        var validate = ajv.compile(schema)
+        if(validate(obj)){
+            xmlFileToJs('xml/motorcycle/motorcycle.xml', function (err, result) {
+                if (err) throw (err);
+                result.motomenu.section[obj.sec_add].entree.push({'item': obj.item_add, 'price': obj.price_add});
+                jsToXmlFile('xml/motorcycle/motorcycle.xml', result, function(err){
+                    if (err) throw(err);
+                })
+            });
+            res.write("valid input!")
+        }
+        else{
+            res.write("invalid input!")
+        }
+        res.end();
+    };
+    appendJSON(req.body);
+});
+
+router.post('/post/json/rm_moto', function (req, res) {
+    function appendJSON(obj) {
+        xmlFileToJs('xml/motorcycle/motorcycle.xml', function (err, result) {
+            var schema = fs.readFileSync(__dirname + "/json-schemas/motorcycle/rm.schema.json","utf-8")
+            schema = JSON.parse(schema)
+            var validate = ajv.compile(schema)
+            var error = false
+            if(validate(obj)){
+                if (err) throw (err);
+                var item = obj.item_rm
+                var confirmation = false
+                var i = 1;
+                while(confirmation == false){
+                    try{
+                        if(item == result.motomenu.section[obj.sec_rm].entree[i].item){ 
+                            result.motomenu.section[obj.sec_rm].entree.splice(i,1)
+                            confirmation = true
+                        }
+                    }
+                    catch(e){
+                        confirmation = true
+                        error = true
+                    }
+                    i++;
+                }
+                // console.log(JSON.stringify(result, null, "  "));
+                jsToXmlFile('xml/motorcycle/motorcycle.xml', result, function(err){
+                    if (err) throw(err);
+                });
+            }
+            else error = true
+
+            if(error) res.write('invalid input!')
+            else res.write('valid input!')
+
+            res.end()
+        })
+        
+    };
+
+    appendJSON(req.body);
+    
+
+});
 
 server.listen(process.env.PORT || 3000, process.env.IP || "0.0.0.0", function () {
     var addr = server.address();
