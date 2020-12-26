@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<carmenu>
+  <section name="Cars" item="car" radio="true">
+    <entree/>
+    <entree>
+      <item>Honda Civic 2020</item>
+      <price>10000.00</price>
+    </entree>
+    <entree>
+      <item>Mustang</item>
+      <price>10000.00</price>
+    </entree>
+    <entree>
+      <item>Hyundai HB20</item>
+      <price>1000.00</price>
+    </entree>
+  </section>
+  <section name="Models" item="model" radio="true">
+    <entree/>
+    <entree>
+      <item>Eletronic Luxe Extra</item>
+      <price>4999.99</price>
+    </entree>
+    <entree>
+      <item>Eletronic Extra</item>
+      <price>2999.99</price>
+    </entree>
+  </section>
+  <section name="Accessories" item="accessory">
+    <entree/>
+    <entree>
+      <item>Air Bag</item>
+      <price>49.99</price>
+    </entree>
+    <entree>
+      <item>Air Conditioner</item>
+      <price>49.99</price>
+    </entree>
+    <entree>
+      <item>Eletric Lock</item>
+      <price>49.99</price>
+    </entree>
+    <entree>
+      <item>Radio / CD</item>
+      <price>49.99</price>
+    </entree>
+  </section>
+  <section name="Doors" item="door" radio="true">
+    <entree/>
+    <entree>
+      <item>2 Doors</item>
+      <price>249.99</price>
+    </entree>
+    <entree>
+      <item>4 Doors</item>
+      <price>499.99</price>
+    </entree>
+  </section>
+</carmenu>
