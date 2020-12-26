@@ -5,9 +5,9 @@ const http = require('http'), //This module provides the HTTP server functionali
     xmlParse = require('xslt-processor').xmlParse, //This module allows us to work with XML files
     xsltProcess = require('xslt-processor').xsltProcess, //The same module allows us to utilise XSL Transformations
     xml2js = require('xml2js'), //This module does XML to JSON conversion and also allows us to get from JSON back to XML
-    Ajv = require('ajv').default,
+    Ajv = require('ajv').default, //Validar usando JSON schema
     ajv = new Ajv({allErrors: true}),
-    validator = require('xsd-schema-validator');
+    validator = require('xsd-schema-validator'); //Validar arquivo utilizando xsd Schema
 
 var router = express(); //We set our routing to be handled by Express
 var server = http.createServer(router); //This is where our server gets created

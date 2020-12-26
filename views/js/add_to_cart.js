@@ -1,5 +1,5 @@
 function add_to_cart(){
-    var choose = $('#urlGet').val()
+    var choose = document.querySelector("#urlGet").getAttribute("name")
     if(choose == '/get/car'){
         var car = $(".car:checked").val(),
             model = $(".model:checked").val(),
