@@ -295,6 +295,18 @@ router.get('/car', function(req,res){
 })
 
 router.get('/get/car', function(req, res) {
+    xmlFileToJs('xml/cart/cart.xml', function (err, result) {
+        if (err) throw (err);
+        var length = result.cart.section[0].entree.length
+        length -= 1
+        console.log(length)
+        result.cart.section[0].entree.splice(1,length)
+        result.cart.section[0].billTotal = 0
+        console.log(JSON.stringify(result, null, "  "));
+        jsToXmlFile('xml/cart/cart.xml', result, function(err){
+            if (err) console.log(err);
+        });     
+    })
     validator.validateXML({file: 'xml/car/car.xml'}, 'xsd/car.xsd', (error, result) => {
         if(result.valid){
             xmlFileToJs('xml/car/car.xml', function(err,result){
@@ -394,6 +406,18 @@ router.get('/motorcycle', function(req, res) {
 });
 
 router.get('/get/motorcycle', function(req, res) {
+    xmlFileToJs('xml/cart/cart.xml', function (err, result) {
+        if (err) throw (err);
+        var length = result.cart.section[0].entree.length
+        length -= 1
+        console.log(length)
+        result.cart.section[0].entree.splice(1,length)
+        result.cart.section[0].billTotal = 0
+        console.log(JSON.stringify(result, null, "  "));
+        jsToXmlFile('xml/cart/cart.xml', result, function(err){
+            if (err) console.log(err);
+        });     
+    })
     validator.validateXML({file: 'xml/motorcycle/motorcycle.xml'}, 'xsd/motorcycle.xsd', (error, result) => {
         if(result.valid){
             xmlFileToJs('xml/motorcycle/motorcycle.xml', function(err,result){
