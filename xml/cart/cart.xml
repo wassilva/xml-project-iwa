@@ -2,6 +2,22 @@
 <cart>
   <section>
     <entree/>
-    <billTotal>0</billTotal>
+    <entree>
+      <item>Hyundai HB20</item>
+      <price>1000.00</price>
+    </entree>
+    <entree>
+      <item>Eletronic Luxe Extra</item>
+      <price>4999.99</price>
+    </entree>
+    <entree>
+      <item>Air Bag</item>
+      <price>49.99</price>
+    </entree>
+    <entree>
+      <item>2 Doors</item>
+      <price>249.99</price>
+    </entree>
+    <billTotal>6299.97</billTotal>
   </section>
 </cart>
