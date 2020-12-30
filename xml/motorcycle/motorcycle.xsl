@@ -11,7 +11,9 @@
             </thead>
             <tbody>
                 <xsl:for-each select="motomenu/section">
+                    <!-- r_option variable to identify whether the entry is radio or checkbox -->
                     <xsl:variable name="r_option" select="boolean(@radio)"/>
+                    <!-- Item variable to identify whether the entry contains content -->
                     <xsl:variable name="item" select="@item"/>
                     <thead class="thead-light">
                         <tr class="">

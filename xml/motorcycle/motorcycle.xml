@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <motomenu>
   <section name="Motorcycles" item="motorcycle" radio="true">
-    <entree/>
+    <entree/> <!-- If the user deletes all entries, there will still be an entry to reference and add -->
     <entree>
       <item>Yamaha MT-03</item>
       <price>10000.00</price>
@@ -16,7 +16,7 @@
     </entree>
   </section>
   <section name="Helmets" item="helmets">
-    <entree/>
+    <entree/> <!-- If the user deletes all entries, there will still be an entry to reference and add -->
     <entree>
       <item>AGV K1</item>
       <price>100.00</price>
@@ -35,7 +35,7 @@
     </entree>
   </section>
   <section name="Seats" item="seat" radio="true">
-    <entree/>
+    <entree/> <!-- If the user deletes all entries, there will still be an entry to reference and add -->
     <entree>
       <item>Vintage Cafe Racer</item>
       <price>40.00</price>
@@ -50,7 +50,7 @@
     </entree>
   </section>
   <section name="Grips" item="grips" radio="true">
-    <entree/>
+    <entree/> <!-- If the user deletes all entries, there will still be an entry to reference and add -->
     <entree>
       <item>Pro Grip 719</item>
       <price>80.00</price>

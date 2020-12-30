@@ -5,9 +5,9 @@ const http = require('http'), //This module provides the HTTP server functionali
     xmlParse = require('xslt-processor').xmlParse, //This module allows us to work with XML files
     xsltProcess = require('xslt-processor').xsltProcess, //The same module allows us to utilise XSL Transformations
     xml2js = require('xml2js'), //This module does XML to JSON conversion and also allows us to get from JSON back to XML
-    Ajv = require('ajv').default, //Validar usando JSON schema
+    Ajv = require('ajv').default, //Validate using JSON schema
     ajv = new Ajv({allErrors: true}),
-    validator = require('xsd-schema-validator'); //Validar arquivo utilizando xsd Schema
+    validator = require('xsd-schema-validator'); //Validate file using xsd Schema
 
 var router = express(); //We set our routing to be handled by Express
 var server = http.createServer(router); //This is where our server gets created
@@ -40,7 +40,9 @@ router.get('/', function(req, res) {
 
 });
 
+/* Cart Page */
 router.get('/cart', function(req,res){
+    /* Sending a file to /cart */
     res.sendFile(__dirname + "/views/cart.html")
 })
 
@@ -59,13 +61,18 @@ router.get('/get/cart', function(req, res){
 
 })
 
+/* car page post receiving all user input */
 router.post('/post/json/cart/car', function(req,res){
     function getJson(obj){
+        /* pulling the json schema from the car to the schema variable */
         var schema = fs.readFileSync(__dirname + "/json-schemas/car/cart.schema.json", "utf-8")
+        /* Transforming the contents of the schema variable from String to JSON */
         schema = JSON.parse(schema)
+        /* Using the ajv module for json schema validation */
         var validate = ajv.compile(schema)
         console.log(obj)
         if(validate(obj)){
+            /* If the json is valid */
             xmlFileToJs('xml/cart/cart.xml', function(err2, result2){
                 if(err2) throw (err2)
                 
@@ -74,6 +81,7 @@ router.post('/post/json/cart/car', function(req,res){
                 xmlFileToJs('xml/car/car.xml', function(err1, result1){
                     if(err1) throw (err1)
                     var json_cart
+                    /* Identifying which items were selected by the user */
                     for(var k = 0; k < result1.carmenu.section.length ; k++){
                         var section = result1.carmenu.section[k].entree
                         
@@ -125,6 +133,7 @@ router.post('/post/json/cart/car', function(req,res){
                     }
                     
                     var billTotal = 0
+                    /* Calculating the bill */
                     for( var i = 1 ; i < result2.cart.section[0].entree.length ; i++ ){
                         billTotal += parseFloat(result2.cart.section[0].entree[i].price)
                     }
@@ -139,6 +148,7 @@ router.post('/post/json/cart/car', function(req,res){
             res.write("valid input!")
         }
         else{
+            /* If the json is invalid */
             res.write("invalid input!")
         }
         res.end()
@@ -146,6 +156,7 @@ router.post('/post/json/cart/car', function(req,res){
     getJson(req.body)
 })
 
+/* post getting all the motorcycle entries */
 router.post('/post/json/cart/moto', function(req,res){
     function getJson(obj){
         var schema = fs.readFileSync(__dirname + "/json-schemas/motorcycle/cart.schema.json", "utf-8")
@@ -235,6 +246,7 @@ router.post('/post/json/cart/moto', function(req,res){
     getJson(req.body)
 })
 
+/* post receiving a request to remove an item from the cart */
 router.post('/post/json/cart_rm', function (req, res) {
     function appendJSON(obj) {
 
@@ -246,6 +258,7 @@ router.post('/post/json/cart_rm', function (req, res) {
             var item = obj.item
             var confirmation = false
             var i = 0;
+            /* Checking which item the user selected to remove */
             while(confirmation == false){
                 if(item == result.cart.section[0].entree[i].item){ 
                     result.cart.section[0].entree.splice(i,1)
@@ -274,6 +287,7 @@ router.post('/post/json/cart_rm', function (req, res) {
 
 });
 
+/* Resetting the shopping cart */
 router.post("/post/json/confirm", function(req,res){  
     xmlFileToJs('xml/cart/cart.xml', function (err, result) {
         if (err) throw (err);
@@ -289,17 +303,20 @@ router.post("/post/json/confirm", function(req,res){
     })
 })
 
-//Pag Buy Car
+/* Car Page */
 router.get('/car', function(req,res){
+    /* Sending a file to /car */
     res.sendFile(__dirname + "/views/car.html")
 })
 
 router.get('/get/car', function(req, res) {
+    /* Resetting the shopping cart */
     xmlFileToJs('xml/cart/cart.xml', function (err, result) {
         if (err) throw (err);
         var length = result.cart.section[0].entree.length
         length -= 1
         console.log(length)
+        /* Using splice(index, how many indexes) to delete */
         result.cart.section[0].entree.splice(1,length)
         result.cart.section[0].billTotal = 0
         console.log(JSON.stringify(result, null, "  "));
@@ -307,8 +324,10 @@ router.get('/get/car', function(req, res) {
             if (err) console.log(err);
         });     
     })
+    /* Validation of the xml file using xsd-schema-validator */
     validator.validateXML({file: 'xml/car/car.xml'}, 'xsd/car.xsd', (error, result) => {
         if(result.valid){
+            /* After verifying that the xml file is valid */
             xmlFileToJs('xml/car/car.xml', function(err,result){
                 // console.log(JSON.stringify(result,null,"  "))
                 res.writeHead(200, {'Content-Type': 'text/html'}); //We are responding to the client that the content served back is HTML and the it exists (code 200)
@@ -323,14 +342,17 @@ router.get('/get/car', function(req, res) {
             })
         }
         else{
+            /* If the xml file is invalid it will throw an error */
             throw(error)
         }
     
     }); 
 });
 
+/* Receiving all entries to add to the xml car file */
 router.post('/post/json/add_car', function (req, res) {
     function appendJSON(obj) {
+        /* Transforming the content of json obj.price_add to float */
         obj.price_add = parseFloat(obj.price_add)
         var schema = fs.readFileSync(__dirname + "/json-schemas/car/add.schema.json", "utf-8")
         schema = JSON.parse(schema)
@@ -354,6 +376,7 @@ router.post('/post/json/add_car', function (req, res) {
     appendJSON(req.body);
 });
 
+/* Receiving all entries to remove an item in the xml car file */
 router.post('/post/json/rm_car', function (req, res) {
     function appendJSON(obj) {
         xmlFileToJs('xml/car/car.xml', function (err, result) {
@@ -406,11 +429,13 @@ router.get('/motorcycle', function(req, res) {
 });
 
 router.get('/get/motorcycle', function(req, res) {
+    /* Resetting the shopping cart */
     xmlFileToJs('xml/cart/cart.xml', function (err, result) {
         if (err) throw (err);
         var length = result.cart.section[0].entree.length
         length -= 1
         console.log(length)
+        /* Using splice(index, how many indexes) to delete */
         result.cart.section[0].entree.splice(1,length)
         result.cart.section[0].billTotal = 0
         console.log(JSON.stringify(result, null, "  "));
@@ -418,8 +443,10 @@ router.get('/get/motorcycle', function(req, res) {
             if (err) console.log(err);
         });     
     })
+    /* Validation of the xml file using xsd-schema-validator */
     validator.validateXML({file: 'xml/motorcycle/motorcycle.xml'}, 'xsd/motorcycle.xsd', (error, result) => {
         if(result.valid){
+            /* After verifying that the xml file is valid */
             xmlFileToJs('xml/motorcycle/motorcycle.xml', function(err,result){
                 // console.log(JSON.stringify(result,null,"  "))
                 res.writeHead(200, {'Content-Type': 'text/html'}); //We are responding to the client that the content served back is HTML and the it exists (code 200)
@@ -434,6 +461,7 @@ router.get('/get/motorcycle', function(req, res) {
             })
         }
         else{
+            /* If the xml file is invalid it will throw an error */
             throw(error)
         }
     
@@ -441,6 +469,7 @@ router.get('/get/motorcycle', function(req, res) {
 
 });
 
+/*  */
 router.post('/post/json/add_moto', function (req, res) {
     function appendJSON(obj) {
         obj.price_add = parseFloat(obj.price_add)
